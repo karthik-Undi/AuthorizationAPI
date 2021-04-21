@@ -8,6 +8,7 @@ namespace AuthorizationAPI.Repository
     public interface IAuthenticationManager
     {
         public string Authenticate(string email, string password);
+        int GetUserid(string email);
 
     }
 }

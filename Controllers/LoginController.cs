@@ -17,6 +17,7 @@ namespace AuthorizationAPI.Controllers
         private readonly IAuthenticationManager manager;
 
         static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(LoginController));
+        Userdetails _user = new Userdetails();
         public LoginController(IAuthenticationManager manager)
         {
             this.manager = manager;
@@ -36,7 +37,12 @@ namespace AuthorizationAPI.Controllers
             var token = manager.Authenticate(details.Email, details.Password);
             if (token == null)
                 return Unauthorized();
-            return Ok(token);
+            TokenAndUserID tokenAndUserID = new TokenAndUserID
+            {
+                UserId = manager.GetUserid(details.Email),
+                Token = token
+            };
+            return Ok(tokenAndUserID);
         }
 
     }

@@ -45,5 +45,11 @@ namespace AuthorizationAPI.Repository
             return tokenHandler.WriteToken(token);
 
         }
+
+        public int GetUserid(string email)
+        {
+            int userId =  _context.Userdetails.Single(user => user.Email == email).Userid;
+            return userId;
+        }
     }
 }
