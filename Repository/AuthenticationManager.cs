@@ -16,8 +16,21 @@ namespace AuthorizationAPI.Repository
         private readonly string tokenKey;
         public AuthenticationManager(string TokenKey)
         {
+            
             this.tokenKey = TokenKey;
+            
 
+        }
+        public AuthenticationManager()
+        {
+
+        }
+        
+
+        public AuthenticationManager(string TokenKey,AuditManagementSystemContext context)
+        {
+            this.tokenKey = TokenKey;
+            _context = context;
         }
 
         public string Authenticate(string email, string password)
